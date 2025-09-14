@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الكورسات</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="/add-course">إضافة كورس</a></li>
+                <li><a href="/manage-courses">إدارة الكورسات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="manage-courses">
+        <h2>إدارة الكورسات</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>العنوان</th>
+                    <th>الوصف</th>
+                    <th>الصورة</th>
+                    <th>رابط التسجيل</th>
+                    <th>العمليات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                    <tr>
+                        <td>{{ course.title }}</td>
+                        <td>{{ course.description[:100] }}...</td>
+                        <td><img src="{{ course.image_url }}" alt="{{ course.title }}" style="width: 100px;"></td>
+                        <td><a href="{{ course.registration_form }}" target="_blank">رابط</a></td>
+                        <td>
+                            <a href="/edit-course/{{ course.id }}" class="edit-button">تعديل</a>
+                            <a href="/delete-course/{{ course.id }}" class="delete-button" onclick="return confirm('هل أنت متأكد من حذف هذا الكورس؟')">حذف</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>للتواصل: <a href="mailto:Abusalih.adam@outlook.com">Abusalih.adam@outlook.com</a></p>
+    </footer>
+</body>
+</html>

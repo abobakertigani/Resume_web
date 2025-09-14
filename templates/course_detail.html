@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الكورس</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="/about">عنّي</a></li>
+                <li><a href="/contact">اتصل بي</a></li>
+                <li><a href="/courses">الكورسات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="course-detail">
+        <h2>{{ course.title }}</h2>
+        <img src="{{ course.image_url }}" alt="{{ course.title }}">
+        <p>{{ course.description }}</p>
+
+        <h3>صور أخرى</h3>
+        <div class="course-images">
+            <!-- هنا ستعرض الصور الأخرى الخاصة بالكورس -->
+            {% for image in course.images %}
+                <img src="{{ image }}" alt="صورة إضافية">
+            {% endfor %}
+        </div>
+
+        <p><a href="{{ course.registration_form }}" target="_blank">رابط استمارة التسجيل</a></p>
+    </section>
+
+    <footer>
+        <p>للتواصل: <a href="mailto:Abusalih.adam@outlook.com">Abusalih.adam@outlook.com</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الكورسات</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="/add-course">إضافة كورس</a></li>
+                <li><a href="/manage-courses">إدارة الكورسات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="courses">
+        <h2>إدارة الكورسات</h2>
+        <div class="course-list">
+            {% for course in courses %}
+                <div class="course-item">
+                    <img src="{{ course.image_url }}" alt="{{ course.title }}">
+                    <h3>{{ course.title }}</h3>
+                    <p>{{ course.description[:100] }}...</p>  <!-- عرض جزء من الوصف -->
+                    <a href="/course/{{ course.id }}" class="details-button">تفاصيل</a>
+                    <a href="/edit-course/{{ course.id }}" class="edit-button">تعديل</a>
+                    <a href="/delete-course/{{ course.id }}"
+                     class="delete-button"
+                     onclick="return confirmDelete('{{ course.title }}')">حذف</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section id="search">
+    <input type="text" id="searchInput" onkeyup="filterCourses()" placeholder="ابحث عن كورس...">
+    </section>
+
+    <footer>
+        <p>للتواصل: <a href="mailto:Abusalih.adam@outlook.com">Abusalih.adam@outlook.com</a></p>
+    </footer>
+
+<script>
+    // تأكيد الحذف قبل إجراء العملية
+    const deleteButtons = document.querySelectorAll('.delete-button');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            const confirmed = confirm("هل أنت متأكد من حذف هذا الكورس؟");
+            if (!confirmed) {
+                event.preventDefault(); // منع الحذف إذا لم يوافق المستخدم
+            }
+        });
+    });
+    // التحقق من صحة النموذج
+    const courseForm = document.querySelector('form');
+    courseForm.addEventListener('submit', function(event) {
+        const title = document.querySelector('input[name="title"]').value;
+        const description = document.querySelector('textarea[name="description"]').value;
+
+        if (!title || !description) {
+            alert('يرجى تعبئة كافة الحقول');
+            event.preventDefault(); // منع إرسال النموذج إذا كانت الحقول فارغة
+        }
+    });
+    // إضافة تأثير عند التمرير إلى أسفل الصفحة
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY;
+        const courseItems = document.querySelectorAll('.course-item');
+
+        courseItems.forEach(item => {
+            if (item.getBoundingClientRect().top <= window.innerHeight - 100) {
+                item.classList.add('visible');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

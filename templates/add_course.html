@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة كورس</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">الرئيسية</a></li>
+                <li><a href="/add-course">إضافة كورس</a></li>
+                <li><a href="/courses">الكورسات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="add-course">
+        <h2>إضافة كورس جديد</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <label for="title">عنوان الكورس:</label>
+            {{ form.title(class="form-control") }}
+
+            <label for="description">وصف الكورس:</label>
+            {{ form.description(class="form-control") }}
+
+            <label for="image_url">رابط الصورة:</label>
+            {{ form.image_url(class="form-control") }}
+
+            <label for="registration_form">رابط استمارة التسجيل:</label>
+            {{ form.registration_form(class="form-control") }}
+
+            <button type="submit">إضافة كورس</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>للتواصل: <a href="mailto:Abusalih.adam@outlook.com">Abusalih.adam@outlook.com</a></p>
+    </footer>
+</body>
+</html>
