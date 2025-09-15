@@ -457,20 +457,57 @@
   </section>
 
   <section id="courses" tabindex="-1">
-    <h2>Available Courses</h2>
+  <h2>Available Courses</h2>
 
-    {% for course in courses %}
-    <div class="course">
-      <h3>{{ course.title }}</h3>
-      <p>{{ course.description }}</p>
-      <a href="{{ course.registration_form }}" target="_blank">انضم الآن</a>
-    </div>
-    {% endfor %}
+  <div class="course">
+    <h3>كورس أساسيات الحاسوب ICDL</h3>
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="#008080" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 5h16v14H4V5zm2 2v10h12V7H6zm4 1h4v2h-4V8zm0 4h6v2h-6v-2z"/>
+    </svg>
+    <button onclick="toggleDescription(this)">تفاصيل</button>
+    <p class="description" style="display:none;">
+      هذا الكورس يزودك بالمهارات الأساسية لاستخدام الحاسوب وتطبيقات المكتب.
+    </p>
+    <a href="https://ee.kobotoolbox.org/x/A5gFMVwp" target="_blank">تسجيل</a>
+  </div>
 
-    {% if courses|length == 0 %}
-      <p>لا توجد كورسات متاحة حاليًا.</p>
-    {% endif %}
+  <div class="course">
+    <h3>كورس الاكسل المتقدم Excel Advanced</h3>
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="#008000" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 4h16v16H4V4zm4 3l4 5-4 5h3l2-2.5L15 17h3l-4-5 4-5h-3l-2 2.5L11 7H8z"/>
+    </svg>
+    <button onclick="toggleDescription(this)">تفاصيل</button>
+    <p class="description" style="display:none;">
+      تعلم مهارات متقدمة في برنامج Excel مثل Pivot Tables, Power Query والتحليلات المعقدة.
+    </p>
+    <a href="https://ee.kobotoolbox.org/x/A5gFMVwp" target="_blank">تسجيل</a>
+  </div>
+
+  <div class="course">
+    <h3>كورس تحليل البيانات باستخدام الاكسل</h3>
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="#0066cc" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 17h2v-7H3v7zm4 0h2V7H7v10zm4 0h2v-4h-2v4zm4 0h2v-6h-2v6zm4 0h2V4h-2v13z"/>
+    </svg>
+    <button onclick="toggleDescription(this)">تفاصيل</button>
+    <p class="description" style="display:none;">
+      تعلم كيف تستخدم Excel كأداة لتحليل البيانات واستخراج المؤشرات العملية.
+    </p>
+    <a href="https://ee.kobotoolbox.org/x/A5gFMVwp" target="_blank">تسجيل</a>
+  </div>
+
+  <div class="course">
+    <h3>كورس المراقبة و التقييم و المساءلة و التعلم MEAL</h3>
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="#cc6600" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z"/>
+    </svg>
+    <button onclick="toggleDescription(this)">تفاصيل</button>
+    <p class="description" style="display:none;">
+      كورس شامل عن نظام MEAL في المشاريع الإنسانية والتنموية مع تطبيقات عملية.
+    </p>
+    <a href="https://ee.kobotoolbox.org/x/A5gFMVwp" target="_blank">تسجيل</a>
+  </div>
   </section>
+  
   <section id="policies" tabindex="-1">
     <h2>Policies</h2>
 
@@ -653,6 +690,17 @@ document.getElementById("contact-form").addEventListener("submit", async (e) => 
     alert("حدث خطأ أثناء الاتصال بالخادم.");
   }
 });
+  
+function toggleDescription(button) {
+  const desc = button.nextElementSibling;
+  if (desc.style.display === "none") {
+    desc.style.display = "block";
+    button.textContent = "إخفاء";
+  } else {
+    desc.style.display = "none";
+    button.textContent = "تفاصيل";
+  }
+}
 </script>
 
 </body>
